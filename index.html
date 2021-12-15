@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Metamon</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/index.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/bootstrap/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/bootstrap/css/bootstrap-grid.min.css'>
+
+
+</head>
+<body>
+  <div class="container" id="fatherNode">
+    <div class="row mb-3">
+      <div class="col" style="margin-top: 20px;">
+        <!-- <div class="mb-3">
+          <label for="inputPassword" class="form-label">Wallet Address</label>
+          <input type="text" class="form-control" value="" id="walletAddress">
+          <div id="inputPasswordHelp" class="form-text">Nhập địa chỉ ví</div>
+        </div> -->
+        <!-- <div class="row mb-3">
+          <label for="totalView" class="form-label">Total View</label>
+          <input type="text" class="form-control" value="50" id="totalView">
+          <div id="totalViewHelp" class="form-text" >Số Metamon mới nhất muốn xem</div>
+        </div> -->
+        <div class="">
+          <label for="types" class="form-label">Chọn loại cần mua</label>
+          <select class="input-group form-select"  aria-label="Chọn loại cần mua" id="categories">
+            <option  value="13">Metamon</option>
+            <option value="23">R-Metamon</option>
+            <option value="20">Kiss-up Land</option>
+            <option selected value="7">Musk USM LAND</option>
+            <option value="28">Raca Punk</option>
+            <option value="17">Egg</option>
+            <option value="10">Matrix Plus Box</option>
+          </select>
+        </div>
+        <div class="row mt-3">
+          <label for="categories" class="form-label">*(Chỉ dùng cho Metamon)</label>
+          <div class="input-group mb-3 col-sm-6">
+            <span class="input-group-text" id="basic-addon1">Chỉ số từ</span>
+            <input type="text" class="form-control" placeholder="Score From" aria-label="scoreFrom" value="307" id="scoreFrom">
+          </div>
+          <div class="input-group mb-3 col-sm-6">
+            <span class="input-group-text" id="basic-addon">Chỉ số đến</span>
+            <input type="text" class="form-control" placeholder="Score To" aria-label="scoreTo" value="329" id="scoreTo">
+          </div>
+        </div>
+        <!-- <div class="row">
+          <label for="price" class="form-label">Price</label>
+          <input type="text" class="form-control col-sm-6" pattern="[0-9]*" value="0" id="priceFrom">
+          <input type="text" class="form-control col-sm-6" pattern="[0-9]*" value="200000000" id="priceTo">
+        </div> -->
+          <input type="button" class="btn btn-primary" id="view" value="View"></input>
+          <hr/>
+        </div>
+      </div>
+    <div class="row mt-3">
+      <div class="col">
+          <table id="bodyTable" class="table table-dark table-sm table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Buy</th>
+                <th scope="col">Rarity</th>
+                <th scope="col">Level</th>
+                <th scope="col">Score</th>
+                <th scope="col">Luck</th>
+                <th scope="col">Price</th>
+                <th scope="col">Face</th>
+              </tr>
+            </thead>
+            <thead id="searchHead">
+              <tr>
+                <th scope="col">Buy</th>
+                <th scope="col">Rarity</th>
+                <th scope="col">Level</th>
+                <th scope="col">Score</th>
+                <th scope="col">Luck</th>
+                <th scope="col">Price</th>
+                <th scope="col">Face</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyTable">
+              
+            </tbody>
+          </table>
+    </div>
+  </div>
+
+
+
+  <!-- Toast -->
+  <div class="position-fixed bottom-0 start-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="https://racawebsource.s3.us-east-2.amazonaws.com/assets/guaishou.png" class="rounded me-2" style="width: 60px;" alt="...">
+        <strong class="me-auto">Success</strong>
+        <small>1 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        <span id="notification-bar"></span>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailsModalLabel">Metamon Score</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+            <table class="table" id="detailTable">
+              <thead>
+                <tr>
+                  <th scope="col">Rarity</th>
+                  <th scope="col">level</th>
+                  <th scope="col">Score</th>
+                  <th scope="col">Luck</th>
+                </tr>
+              </thead>
+              <tbody >
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
+<script type="text/javascript" src='js/bootstrap/js/bootstrap.min.js'></script>
+<script type="text/javascript" src='js/index.js'></script>
+
+</body>
+</html>
+
+
+
